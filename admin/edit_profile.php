@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+<?php 
+        include "../session/session_login.php";
+        $showSuccessUsernameModal   = false;
+        $showSuccessModal           = false;
+        $showErrorModal             = false;
+
+        $query=mysqli_query($konek_db, "SELECT * FROM admin WHERE username='".$_SESSION['username']."'");
+        $data = mysqli_fetch_array ($query);
+
+        if(isset($_POST['kirim'])){
+            $nama           = $_POST['nama'];
+            $username       = $_POST['username'];
+            $username_baru  = $_POST['username_baru'];
+
+            if (!empty($_POST['password'])) {
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            } else {
+                $password = $data['password'];
+            }
+
+            $queryupdate = "UPDATE `admin` SET
+                `nama`      = '$nama',
+                `username`  = '$username_baru',
+                `password`  = '$password' WHERE `username`  = '$username'
+            ";
+
+            if(mysqli_query($konek_db, $queryupdate)) {
+                if ($username !== $username_baru){
+                    $_SESSION['username'] = $username_baru;
+                    $showSuccessUsernameModal = true;
+                }else{
+                    $showSuccessModal = true;
+                }
+            } else {
+                $showErrorModal = true;
+            }
+        }
+    ?>
+
+    <div class="d-flex" id="wrapper">
+        <?php 
+            include "sidebar.php";
+            echo '<div id="page-content-wrapper">';
+            include "navbar.php";
+        ?>
+        <!-- Page content-->
+        <div class="container-fluid">
+            <h1 class="mt-4 text-center">Edit Profile</h1>
+            <form action="" method="POST">
+                <input type="hidden" name="username" value="<?= $data['username']; ?>">
+                <div class="col-xl-9 ms-2">
+                    <div class="card-body">
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-3">
+                                <h6 class="mb-0">Nama :</h6>
+                            </div>
+                            <div class="col-md-9 pe-5">
+                                <input type="text" class="form-control form-control-lg" name="nama" value="<?php echo $data['nama'] ?>" required/>
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+                                <h6 class="mb-0">Username :</h6>
+                            </div>
+                            <div class="col-md-9 pe-5">
+                                <input type="text" class="form-control form-control-lg" name="username_baru" value="<?php echo $data['username'] ?>" required/>
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+                                <h6 class="mb-0">Password :</h6>
+                            </div>
+                            <div class="col-md-9 pe-5">
+                                <input type="password" class="form-control form-control-lg" name="password" placeholder="Jika ingin ubah password silahkan isi, jika tidak tidak masalah"/>
+                            </div>
+                        </div>
+                        <div class="mb-5 mt-4">
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg" name="kirim"><i class="bi bi-send me-2"></i>Simpan</button>
+                            <a href="profile.php"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg ms-2"><i class="bi bi-arrow-return-left me-2"></i>Kembali</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Berhasil Username -->
+    <div class="modal fade" id="successUsernameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Notifikasi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Username berhasil diubah, silahkan login ulang
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if ($showSuccessUsernameModal): ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var myModal = new bootstrap.Modal(document.getElementById('successUsernameModal'));
+                myModal.show();
+
+                var modalElement = document.getElementById('successUsernameModal');
+                modalElement.addEventListener('hidden.bs.modal', function () {
+                    window.location.href = '../session_logout.php';
+                });
+            });
+        </script>
+    <?php endif; ?>
+
+    <!-- Modal Berhasil -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Notifikasi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Data Berhasil Dikirimkan
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if ($showSuccessModal): ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+                myModal.show();
+
+                var modalElement = document.getElementById('successModal');
+                modalElement.addEventListener('hidden.bs.modal', function () {
+                    window.location.href = 'profile.php'; // Redirect setelah modal ditutup
+                });
+            });
+        </script>
+    <?php endif; ?>
+
+    <!-- Modal Gagal -->
+    <div class="modal fade" id="erorrModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Notifikasi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Data Gagal Dikirimkan
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if ($showErrorModal): ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var myModal = new bootstrap.Modal(document.getElementById('erorrModal'));
+                myModal.show();
+            });
+        </script>
+    <?php endif; ?>
+</body>
+</html>
