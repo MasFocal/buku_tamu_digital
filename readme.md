@@ -10,24 +10,19 @@ Website Buku Tamu Digital digunakan agar memudahkan dalam melakukan mencatatan d
 - Customer Service
 - User/Guest
 
-2. Admin
+A. Admin
 - Mengelola Perangkat
 - Mengelola data customer Service
 - Mengelola buku tamu
 - Mengunduh buku tamu ke pdf
 
-3. Customer Service
+B. Customer Service
 - Mengelola buku tamu
 - Mengunduh buku tamu ke pdf
 - Menerima informasi tamu melalui WhatsApp
 
-4. User/Guest
+C. User/Guest
 - Mengisi buku tamu
-
-5. API WhatsApp
-- Menambahkan dan Menghapus Perangkat
-- Mengirimkan data buku tamu ke WhatsApp setiap mengisi data
-- Menghapus data buku tamu
 
 ## Instalansi
 
@@ -50,7 +45,7 @@ $ composer require mpdf/mpdf
 https://fonnte.com/
 ```
 
-- Upload ```buku_tamu.sql```
+- Upload ```buku_tamu_digital.sql```
 
 - Setting koneksi di ```koneksi.php```
 
@@ -59,7 +54,7 @@ https://fonnte.com/
 username : admin
 password : admin
 ```
-- Pada menu Data Perangkat, pilih Atur Token Akun kemudikan isikan Token Akun Fonnte yang didapatkan melalui website Fonnte pada menu Setting > Akun Token.
+- Pada menu Data Perangkat, pilih Atur Token Akun kemudikan isikan Token Akun Fonnte yang didapatkan melalui website Fonnte pada menu ```Setting``` > ```Akun Token``` ([Lihat Disini](https://docs.fonnte.com/account-token/)).
 
 - Setelah itu Tambah Perangkat dengan memasukan nama dan nomor telepon yang digunakan untuk mengirimkan WhatsApp.
 
@@ -67,7 +62,16 @@ password : admin
 
 - Isi nomor handphone WhatsApp penerima pada bagian Customer Service (Nomor yang digunakan tidak boleh sama dengan Nomor Pengiriman)
 
-- Kembali pada halaman buku_tamu/index.php dan isi data. Cek apakah sudah masuk WhatsApp atau belum
+- Kembali pada halaman ```buku_tamu_digital/index.php`` dan isi data. Cek apakah sudah masuk WhatsApp atau belum
+
+
+## Log Update
+
+- 24/03/2025
+Update no whatsapp index.php
+
+- 21/03/2025
+First Commit
 
 ## Documentation
 
