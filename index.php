@@ -70,6 +70,8 @@
             $waktu                  = $tanggalwaktu->format('H:i:s');
             $nama                   = $_POST['nama'];
             $no_hp                  = $_POST['no_hp'];
+            $no_hp_edit             = preg_replace('/^0/', '62', $_POST['no_hp']); // Ganti 0 di awal dengan 62
+            $whatsapp_link          = "wa.me/" . $no_hp_edit; // Gabungkan dengan wa.me/
             $asal                   = $_POST['asal'];
             $keterangan             = $_POST['keterangan'];
             $status                 = $_POST['status'];
@@ -82,7 +84,7 @@
                 CURLOPT_POST => true,
                 CURLOPT_POSTFIELDS => array(
                     'target'  => $target, 
-                    'message' => "*Hallo ada yang berkunjung nih* \n*Hari, Tanggal* : $hari, $tanggalWa \n*Jam* : $waktu \n*Nama* : $nama \n*No Handphone* : $no_hp \n*Asal* : $asal \n*Keterangan* : $keterangan \n*Status* : $status \n*Keterangan Janjian* : $keterangan_janjian",
+                    'message' => "*Hallo ada yang berkunjung nih* \n*Hari, Tanggal* : $hari, $tanggalWa \n*Jam* : $waktu \n*Nama* : $nama \n*No Handphone* : $whatsapp_link \n*Asal* : $asal \n*Keterangan* : $keterangan \n*Status* : $status \n*Keterangan Janjian* : $keterangan_janjian",
                 ),
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: ' . $token_akun
@@ -188,13 +190,11 @@
                                 <div class="col-md-6 mb-4">
                                     <h6 class="mb-2 pb-1">Sudah Buat Janji ? </h6>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="status" id="opsi1"
-                                        value="sudah" required/>
+                                        <input class="form-check-input" type="radio" name="status" id="opsi1" value="sudah" required/>
                                         <label class="form-check-label" for="opsi1">Sudah</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="status" id="opsi2"
-                                        value="belum" required/>
+                                        <input class="form-check-input" type="radio" name="status" id="opsi2" value="belum" required/>
                                         <label class="form-check-label" for="opsi2">Belum</label>
                                     </div>
                                 </div>
