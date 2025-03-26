@@ -67,6 +67,11 @@ password : admin
 
 ## Log Update
 
+- 26/03/2025
+Penambahan kalender data tamu
+Penambahan line chart data tamu 20 hari terakhir
+Penambahan log data tamu 10 terakhir
+
 - 24/03/2025
 Update no whatsapp index.php
 
