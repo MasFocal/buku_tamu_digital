@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2025 at 04:03 AM
+-- Generation Time: Apr 14, 2025 at 08:52 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -94,6 +94,13 @@ CREATE TABLE `perangkat` (
 CREATE TABLE `token_akun` (
   `token` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `token_akun`
+--
+
+INSERT INTO `token_akun` (`token`) VALUES
+('eyJpdiI6IjJKeGRlRTBmRVQ2SDZoaTRwSm01RXc9PSIsInZhbHVlIjoiS2ZSVDl4ZDZ5OVpnRXd0MUlaUzAwWU5DUlB5OXZjZ2Q5QlJvL1lPWk10RHpUYWpsNTFRUHJxUzY4VjlYV21KViJ9.cacc7dcf0dba4cfb269909cb6245f32bbf95dfc83049b0a56db16222d3a290b2');
 
 --
 -- Indexes for dumped tables

@@ -62,7 +62,7 @@ password : admin
 
 - Isi nomor handphone WhatsApp penerima pada bagian Customer Service (Nomor yang digunakan tidak boleh sama dengan Nomor Pengiriman)
 
-- Kembali pada halaman ```buku_tamu_digital/index.php`` dan isi data. Cek apakah sudah masuk WhatsApp atau belum
+- Kembali pada halaman ```buku_tamu_digital/index.php``` dan isi data. Cek apakah sudah masuk WhatsApp atau belum
 
 
 ## Log Update
