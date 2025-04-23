@@ -299,9 +299,9 @@
                             <h4 class="text-uppercase ">Tamu Kunjungan</h4>
                         </div>
                     </div>
-                    <div class="row mb-4 mt-2">
+                    <div class="row mb-4">
                         <div class="col-md-6">
-                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3 mt-2">
                                 <i class="bi bi-people text-primary display-6"></i>
                                 <div class="ms-auto text-end">
                                     <h3 class="fw-bold">
@@ -317,7 +317,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3 mt-2">
                                 <i class="bi bi-people text-primary display-6"></i>
                                 <div class="ms-auto text-end">
                                     <h3 class="fw-bold">
@@ -339,9 +339,9 @@
                             <h4 class="text-uppercase ">Entitas Akun</h4>
                         </div>
                     </div>
-                    <div class="row mb-4 mt-2">
+                    <div class="row mb-4">
                         <div class="col-md-6">
-                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3 mt-2">
                                 <i class="bi bi-person text-danger display-6"></i>
                                 <div class="ms-auto text-end">
                                     <h3 class="fw-bold">
@@ -357,7 +357,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3 mt-2">
                                 <i class="bi bi-person text-danger display-6"></i>
                                 <div class="ms-auto text-end">
                                     <h3 class="fw-bold">
@@ -379,9 +379,9 @@
                             <h4 class="text-uppercase ">Perangkat</h4>
                         </div>
                     </div>
-                    <div class="row mb-4 mt-2">
+                    <div class="row mb-4">
                         <div class="col-md-6">
-                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3 mt-2">
                                 <i class="bi bi-phone text-warning display-6"></i>
                                 <div class="ms-auto text-end">
                                     <h3 class="fw-bold">
@@ -397,7 +397,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3 mt-2">
                                 <i class="bi bi-phone text-warning display-6"></i>
                                 <div class="ms-auto text-end">
                                     <h3 class="fw-bold">
