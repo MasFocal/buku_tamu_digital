@@ -2,5 +2,4 @@ composer.json
 composer.lock
 vendor/
 backup/
-bootstrap/
-bootstrap-icons/
+node_modules/
