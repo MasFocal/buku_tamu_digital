@@ -5,3 +5,4 @@ package-lock.json
 vendor/
 backup/
 node_modules/
+css_dashboard/

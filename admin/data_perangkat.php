@@ -319,62 +319,67 @@
         <!-- Page content-->
         <div class="container-fluid">
             <h1 class="mt-4 text-center">Data Perangkat</h1>
-            <div class="mt-5 mb-5">
+            <div class="mt-5 mb-4">
                 <a href="tambah_perangkat.php">
-                    <button class="btn btn-primary me-2"><i class='bi bi-plus-lg me-2'></i>Tambah Perangkat</button>
+                    <button class="btn btn-primary mb-3 me-3"><i class='bi bi-plus-lg me-2'></i>Tambah Perangkat</button>
                 </a>
                 <a href="atur_akun.php">
-                    <button class="btn btn-warning ms-2 me-2"><i class='bi bi-key me-2'></i>Atur Token Akun</button>
+                    <button class="btn btn-warning mb-3 me-3"><i class='bi bi-key me-2'></i>Atur Token Akun</button>
                 </a>
             </div>
-            <table class="table table-bordered table-striped">
-                <tr class="text-center">
-                    <th>No</th>
-                    <th>Perangkat</th>
-                    <th>Keterangan</th>
-                    <th>Action</th>
-                </tr>
-                <?php
-                    if (count($merged_devices) > 0) {
-                        foreach ($merged_devices as $device) {
-                            //$token = isset($devices_db[$device['no_hp']]['token']) ? htmlspecialchars($devices_db[$device['no_hp']]['token']) : "(Token tidak ditemukan)";
-                            $id++;
-                ?>
-                <form action="" method="POST">
-                    <input type="hidden" name="id_no_perangkat" value="<?= $device['no_hp']; ?>">
-                    <tr>
-                        <td><?= $id ?></td>
-                        <td>
-                            <b>Nama Perangkat : </b><?= $device['nama_perangkat'] ?>
-                            <br>
-                            <b>Nomor : </b><?= $device['no_hp'] ?>
-                        </td>
-                        <td>
-                            <b>Paket : </b><?= $device['package'] ?>
-                            <br>
-                            <b>Status : </b><?= $device['status'] ?>
-                            <br>
-                            <b>Kuota : </b><?= $device['quota'] ?>
-                        </td>
-                        <td class='text-center'>
-                            <?php 
-                                if($device['status'] == "connect"){
-                                    echo "<button name='disconnect' class='btn btn-warning me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark'><i class='bi bi-unlock me-2'></i>Putuskan</button>";
-                                }else{
-                                    echo "<button name='connect' class='btn btn-info me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark' data-bs-toggle='modal' data-bs-target='#ModalToken'><i class='bi bi-link-45deg me-2'></i>Tautkan</button>";
-                                }
-                            ?>
-                            <button name='hapus' class='btn btn-danger mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark' id="openModal"><i class='bi bi-trash text-light me-2'></i>Hapus</button>
-                        </td>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <tr class="text-center">
+                        <th>No</th>
+                        <th>Perangkat</th>
+                        <th>Keterangan</th>
+                        <th>Action</th>
                     </tr>
-                    </form>
-                <?php
+                    <?php
+                        if (count($merged_devices) > 0) {
+                            foreach ($merged_devices as $device) {
+                                //$token = isset($devices_db[$device['no_hp']]['token']) ? htmlspecialchars($devices_db[$device['no_hp']]['token']) : "(Token tidak ditemukan)";
+                                $id++;
+                    ?>
+                    <form action="" method="POST">
+                        <input type="hidden" name="id_no_perangkat" value="<?= $device['no_hp']; ?>">
+                        <tr>
+                            <td><?= $id ?></td>
+                            <td>
+                                <b>Nama Perangkat : </b><?= $device['nama_perangkat'] ?>
+                                <br>
+                                <b>Nomor : </b><?= $device['no_hp'] ?>
+                            </td>
+                            <td>
+                                <b>Paket : </b><?= $device['package'] ?>
+                                <br>
+                                <b>Status : </b><?= $device['status'] ?>
+                                <br>
+                                <b>Kuota : </b><?= $device['quota'] ?>
+                            </td>
+                            <td class='text-center'>
+                                <div>
+                                    <?php 
+                                        if($device['status'] == "connect"){
+                                            echo "<button name='disconnect' class='btn btn-warning me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark'><i class='bi bi-unlock me-2'></i>Putuskan</button>";
+                                        }else{
+                                            echo "<button name='connect' class='btn btn-info me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark' data-bs-toggle='modal' data-bs-target='#ModalToken'><i class='bi bi-link-45deg me-2'></i>Tautkan</button>";
+                                        }
+                                    ?>
+                                    <button name='hapus' class='btn btn-danger mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark' id="openModal"><i class='bi bi-trash text-light me-2'></i>Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </form>
+                    <?php
+                            }
+                        } else {
+                            echo "<tr><td colspan='4' class='text-center'>Tidak ada perangkat ditemukan.</td></tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='4' class='text-center'>Tidak ada perangkat ditemukan.</td></tr>";
-                    }
-                ?>
-            </table>
+                    ?>
+                </table>
+            </div>
         </div>
     </div>
 

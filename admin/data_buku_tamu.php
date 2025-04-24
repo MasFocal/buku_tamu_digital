@@ -99,9 +99,14 @@
             <!-- Page content-->
             <div class="container-fluid">
                 <h1 class="mt-4 mb-4 text-center">Data Buku Tamu</h1>
-                <a href="../print.php" target="_blank">
-                    <button class="btn btn-success mb-4 mt-4"><i class='bi bi-printer me-2'></i>Download Data Buku Tamu</button>
-                </a>
+                <div class="mt-5 mb-4">
+                    <a href="../print.php" target="_blank">
+                        <button class="btn btn-danger mb-3 me-3"><i class='bi bi-printer me-2'></i>Download Data (.pdf)</button>
+                    </a>
+                    <a href="../excel.php">
+                        <button class="btn btn-success mb-3 me-3"><i class='bi bi-printer me-2'></i>Download Data (.xlsx)</button>
+                    </a>
+                </div>
 
                 <?php
                     $query_total = mysqli_query($konek_db, "SELECT COUNT(*) FROM buku_tamu");
@@ -115,63 +120,65 @@
                     <button class="btn btn-success" type="submit" <?= ($total_rows == 0) ? 'disabled' : ''; ?>><i class='bi bi-search'></i></button>
                 </form>
 
-                <table class="table table-bordered table-striped mt-4">
-                    <tr class="text-center">
-                        <th id="">No</th>
-                        <th id="">Hari, Tanggal</th>
-                        <th id="">Jam Kedatangan</th>
-                        <th id="">Nama Tamu</th>
-                        <th id="">Action</th>
-                    </tr>
-                    <?php
-                        $limit = 5;
-
-                        if (isset($_GET["page"])) {    
-                            $page_number  = $_GET["page"];    
-                        }else{
-                            $page_number=1;
-                        }
-                        $initial_page = ($page_number-1) * $limit;
-
-                        $where = '';
-                        if(isset($_GET['search'])) {
-                            $search = $_GET['search'];
-                            $where = " WHERE tanggal_kedatangan LIKE '%$search%' OR hari_kedatangan LIKE '%$search%' OR jam_kedatangan LIKE '%$search%' OR nama_lengkap LIKE '%$search%'";
-                        }
-                        $querydata = mysqli_query($konek_db, "SELECT * FROM buku_tamu $where ORDER BY message_id DESC LIMIT $initial_page, $limit");
-                        $id = $initial_page+0;
-                        $hitung = mysqli_num_rows($querydata);
-                        if ($hitung == 0) {
-                            echo "<tr><td colspan='5' class='text-center'>Data belum ada</td></tr>";
-                        } else {
-                        while($sqldata = mysqli_fetch_array($querydata)){
-                    ?>
-                    <form action="" method="POST">
-                    <input type="hidden" name="id_tamu" value="<?= $sqldata['message_id']; ?>">
-                    <tr>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped mt-4">
+                        <tr class="text-center">
+                            <th id="">No</th>
+                            <th id="">Hari, Tanggal</th>
+                            <th id="">Jam Kedatangan</th>
+                            <th id="">Nama Tamu</th>
+                            <th id="">Action</th>
+                        </tr>
                         <?php
-                            $tanggal = new DateTime($sqldata["tanggal_kedatangan"]);
-                            $id++;
-                            echo "
-                                <td id='tb-td'>".$id."</td>
-                                <td id='tb-td'>".$sqldata["hari_kedatangan"].", ".$tanggal->format('d F Y')."</td>
-                                <td id='tb-td'>".$sqldata["jam_kedatangan"]."</td>
-                                <td id='tb-td'>".$sqldata["nama_lengkap"]."</td>
-                                <td id='tb-td' class='text-center'>
-                                <div>
-                                    <button name='detail' class='btn btn-info me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark'><i class='bi bi-info-lg me-2'></i>Lihat</button>
-                                    <button name='hapus' class='btn btn-danger me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark'><i class='bi bi-trash text-light me-2'></i>Hapus</button> 
-                                </div>
-                                </td>
-                            ";
+                            $limit = 5;
+
+                            if (isset($_GET["page"])) {    
+                                $page_number  = $_GET["page"];    
+                            }else{
+                                $page_number=1;
+                            }
+                            $initial_page = ($page_number-1) * $limit;
+
+                            $where = '';
+                            if(isset($_GET['search'])) {
+                                $search = $_GET['search'];
+                                $where = " WHERE tanggal_kedatangan LIKE '%$search%' OR hari_kedatangan LIKE '%$search%' OR jam_kedatangan LIKE '%$search%' OR nama_lengkap LIKE '%$search%'";
+                            }
+                            $querydata = mysqli_query($konek_db, "SELECT * FROM buku_tamu $where ORDER BY message_id DESC LIMIT $initial_page, $limit");
+                            $id = $initial_page+0;
+                            $hitung = mysqli_num_rows($querydata);
+                            if ($hitung == 0) {
+                                echo "<tr><td colspan='5' class='text-center'>Data belum ada</td></tr>";
+                            } else {
+                            while($sqldata = mysqli_fetch_array($querydata)){
                         ?>
-                    </tr>
-                    </form>
-                    <?php 
+                        <form action="" method="POST">
+                        <input type="hidden" name="id_tamu" value="<?= $sqldata['message_id']; ?>">
+                        <tr>
+                            <?php
+                                $tanggal = new DateTime($sqldata["tanggal_kedatangan"]);
+                                $id++;
+                                echo "
+                                    <td>".$id."</td>
+                                    <td>".$sqldata["hari_kedatangan"].", ".$tanggal->format('d F Y')."</td>
+                                    <td>".$sqldata["jam_kedatangan"]."</td>
+                                    <td>".$sqldata["nama_lengkap"]."</td>
+                                    <td class='text-center'>
+                                        <div>
+                                            <button name='detail' class='btn btn-info me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark'><i class='bi bi-info-lg me-2'></i>Lihat</button>
+                                            <button name='hapus' class='btn btn-danger me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2 border-dark'><i class='bi bi-trash text-light me-2'></i>Hapus</button> 
+                                        </div>
+                                    </td>
+                                ";
+                            ?>
+                        </tr>
+                        </form>
+                        <?php 
+                            }
                         }
-                    }
-                    ?>
-                </table>
+                        ?>
+                    </table>
+                </div>
                 <ul class="pagination justify-content-center mb-5">
                 <?php 
                     $query2 = mysqli_query($konek_db, "SELECT COUNT(*) FROM buku_tamu");

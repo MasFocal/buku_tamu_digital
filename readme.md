@@ -25,7 +25,7 @@ C. User/Guest
 - Mengisi buku tamu
 
 ## Instalansi
-
+- PHP Versi 8.2 Keatas
 - Download atau Clone Source Code
 - Download dan Install NPM dan Composer
 - Download dan Install Bootstrap v5.3
@@ -40,10 +40,15 @@ $ npm i bootstrap-icons
 ``` 
 $ composer require mpdf/mpdf
 ```
+- Download dan Install PhpSpreadsheet
+``` 
+$ composer require phpoffice/phpspreadsheet
+```
 - Registrasi dan Login Fonnte
 ```
 https://fonnte.com/
 ```
+- Ekstrak css_dashboard.rar
 
 - Upload ```buku_tamu_digital.sql```
 
@@ -67,6 +72,9 @@ password : admin
 
 ## Log Update
 
+- 24/04/2025
+Perbaikan tampilan dan penambahan fitur download excel
+
 - 26/03/2025
 Penambahan kalender data tamu
 Penambahan line chart data tamu 20 hari terakhir
@@ -82,6 +90,7 @@ First Commit
 
 [Documentation Fonnte](https://docs.fonnte.com/) \
 [Documentation mPDF](https://mpdf.github.io/) \
+[Documentation PhpSpreadsheet](https://phpspreadsheet.readthedocs.io/) \
 [Documentation Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
 ## License

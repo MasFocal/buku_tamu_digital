@@ -56,6 +56,7 @@
         <!-- Page content-->
         <div class="container-fluid">
             <h1 class="mt-4 text-center">Edit Profile</h1>
+            <a href="profile.php"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg mt-4 mb-3"><i class="bi bi-arrow-return-left me-2"></i>Kembali</button></a>
             <form action="" method="POST">
                 <input type="hidden" name="username" value="<?= $data['username']; ?>">
                 <div class="col-xl-9 ms-2">
@@ -94,7 +95,6 @@
                         </div>
                         <div class="mb-5 mt-4">
                             <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg" name="kirim"><i class="bi bi-send me-2"></i>Simpan</button>
-                            <a href="profile.php"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg ms-2"><i class="bi bi-arrow-return-left me-2"></i>Kembali</button></a>
                         </div>
                     </div>
                 </div>

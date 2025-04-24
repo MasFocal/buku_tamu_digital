@@ -54,6 +54,7 @@
         <!-- Page content-->
         <div class="container-fluid">
             <h1 class="mt-4 text-center">Tambah Data Customer Service</h1>
+            <a href="data_customer_service.php"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg mt-4 mb-3"><i class="bi bi-arrow-return-left me-2"></i>Kembali</button></a>
             <form action="" method="POST">
                 <div class="col-xl-9 ms-2">
                     <div class="card-body">
@@ -91,7 +92,6 @@
                         </div>
                         <div class="mb-5 mt-4">
                             <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg" name="kirim"><i class="bi bi-send me-2"></i>Simpan</button>
-                            <a href="data_customer_service.php"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg ms-2"><i class="bi bi-arrow-return-left me-2"></i>Kembali</button></a>
                         </div>
                     </div>
                 </div>

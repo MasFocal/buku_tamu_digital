@@ -55,52 +55,56 @@
             </form>
 
             <!-- Tabel Data Customer Service -->
-            <table class="table table-bordered table-striped mt-4">
-                <tr class="text-center">
-                    <th>No</th>
-                    <th>Username</th>
-                    <th>Nama Customer Service</th>
-                    <th>No Handphone</th>
-                    <th>Action</th>
-                </tr>
-                <?php
-                    $limit = 4;
-                    $page_number = isset($_GET["page"]) ? $_GET["page"] : 1;
-                    $initial_page = ($page_number - 1) * $limit;
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped mt-4">
+                    <tr class="text-center">
+                        <th>No</th>
+                        <th>Username</th>
+                        <th>Nama Customer Service</th>
+                        <th>No Handphone</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php
+                        $limit = 4;
+                        $page_number = isset($_GET["page"]) ? $_GET["page"] : 1;
+                        $initial_page = ($page_number - 1) * $limit;
 
-                    $where = "";
-                    if (isset($_GET['search']) && !empty($_GET['search'])) {
-                        $search = mysqli_real_escape_string($konek_db, $_GET['search']);
-                        $where = " WHERE nama LIKE '%$search%' OR username LIKE '%$search%'";
-                    }
-
-                    $querydata = mysqli_query($konek_db, "SELECT * FROM customer_service $where ORDER BY username ASC LIMIT $initial_page, $limit");
-                    $id = $initial_page;
-                    $hitung = mysqli_num_rows($querydata);
-
-                    if ($hitung == 0) {
-                        echo "<tr><td colspan='5' class='text-center'>Data belum ada</td></tr>";
-                    } else {
-                        while ($sqldata = mysqli_fetch_array($querydata)) {
-                            $id++;
-                            echo "
-                            <form action='' method='POST'>
-                                <input type='hidden' name='username' value='{$sqldata['username']}'>
-                                <tr>
-                                    <td class='text-center'>{$id}</td>
-                                    <td>{$sqldata['username']}</td>
-                                    <td>{$sqldata['nama']}</td>
-                                    <td>{$sqldata['no_hp']}</td>
-                                    <td class='text-center'>
-                                        <button name='edit' class='btn btn-warning me-2'><i class='bi bi-pencil me-2'></i>Edit</button>
-                                        <button name='hapus' class='btn btn-danger'><i class='bi bi-trash text-light me-2'></i>Hapus</button> 
-                                    </td>
-                                </tr>
-                            </form>";
+                        $where = "";
+                        if (isset($_GET['search']) && !empty($_GET['search'])) {
+                            $search = mysqli_real_escape_string($konek_db, $_GET['search']);
+                            $where = " WHERE nama LIKE '%$search%' OR username LIKE '%$search%'";
                         }
-                    }
-                ?>
-            </table>
+
+                        $querydata = mysqli_query($konek_db, "SELECT * FROM customer_service $where ORDER BY username ASC LIMIT $initial_page, $limit");
+                        $id = $initial_page;
+                        $hitung = mysqli_num_rows($querydata);
+
+                        if ($hitung == 0) {
+                            echo "<tr><td colspan='5' class='text-center'>Data belum ada</td></tr>";
+                        } else {
+                            while ($sqldata = mysqli_fetch_array($querydata)) {
+                                $id++;
+                                echo "
+                                <form action='' method='POST'>
+                                    <input type='hidden' name='username' value='{$sqldata['username']}'>
+                                    <tr>
+                                        <td class='text-center'>{$id}</td>
+                                        <td>{$sqldata['username']}</td>
+                                        <td>{$sqldata['nama']}</td>
+                                        <td>{$sqldata['no_hp']}</td>
+                                        <td class='text-center'>
+                                            <div>
+                                                <button name='edit' class='btn btn-warning me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2'><i class='bi bi-pencil me-2'></i>Edit</button>
+                                                <button name='hapus' class='btn btn-danger me-2 mb-2 mt-2 pt-1 pb-1 pe-2 ps-2'><i class='bi bi-trash text-light me-2'></i>Hapus</button> 
+                                            <div>
+                                        </td>
+                                    </tr>
+                                </form>";
+                            }
+                        }
+                    ?>
+                </table>
+            </div>
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-5">

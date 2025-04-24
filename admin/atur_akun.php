@@ -77,6 +77,7 @@
         <!-- Page content-->
         <div class="container-fluid">
             <h1 class="mt-4 text-center mb-4">Atur Token Akun</h1>
+            <a href="data_perangkat.php" class="btn btn-primary btn-lg mt-4 mb-3"><i class="bi bi-arrow-return-left me-2"></i>Kembali</a>
             <form action="" method="POST" onsubmit="return encryptBeforeSubmit(event)">
                 <div class="mb-5">
                     <label for="text" class="form-label">Masukkan Token Akun Fonnte:</label>
@@ -84,7 +85,6 @@
                 </div>
                 <input type="hidden" id="token" name="token"/>
                 <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg" name="kirim"><i class="bi bi-send me-2"></i>Simpan</button>
-                <a href="data_perangkat.php" class="btn btn-primary btn-lg ms-2"><i class="bi bi-arrow-return-left me-2"></i>Kembali</a>
             </form>
         </div>
     </div>
