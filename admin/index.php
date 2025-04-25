@@ -153,7 +153,7 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
-                                            <canvas id="tamuHarianChart" class="mb-4 vh-100"></canvas>
+                                            <canvas id="tamuHarianChart" class="mb-4 vh-50"></canvas>
                                         </div>
                                     </div>
                                 </div>

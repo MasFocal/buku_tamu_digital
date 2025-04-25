@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print Buku Tamu</title>
+    <title>Print Buku Tamu Bulan</title>
     <link rel="stylesheet" href="print.css">
 </head>
 <body>
@@ -13,7 +13,34 @@
 
         $id=0;
 
-        $queryDataPrint = mysqli_query($konek_db, "SELECT * FROM buku_tamu ORDER BY message_id DESC");
+        $bulanAngka = $_GET['bulan'];
+        $tahun      = $_GET['tahun'];
+
+        $namaBulan = [
+            "01" => "Januari",
+            "02" => "Februari",
+            "03" => "Maret",
+            "04" => "April",
+            "05" => "Mei",
+            "06" => "Juni",
+            "07" => "Juli",
+            "08" => "Agustus",
+            "09" => "September",
+            "10" => "Oktober",
+            "11" => "November",
+            "12" => "Desember"
+        ];
+
+        if (!array_key_exists($bulanAngka, $namaBulan)) {
+            die("Bulan tidak valid!");
+        }
+
+        $bulan = $_GET['bulan'];
+        if (!preg_match('/^(0[1-9]|1[0-2])$/', $bulan)) {
+            die("Bulan tidak valid!");
+        }
+
+        $queryDataPrint = mysqli_query($konek_db, "SELECT * FROM buku_tamu WHERE MONTH(tanggal_kedatangan) = '$bulan' AND YEAR(tanggal_kedatangan) = '$tahun' ORDER BY message_id DESC");
     ?>
     <style>
         h1 {
@@ -48,11 +75,11 @@
         }
     </style>
 
-    <h1>Data Buku Tamu 
+    <h1>Data Buku Tamu Bulan <?php echo $namaBulan[$bulanAngka] . " $tahun "; ?>
         <br>
         <?php
             date_default_timezone_set('Asia/Jakarta');
-            echo date("l, j F Y, H:i:s");
+            echo "Per " . date("j F Y, H:i:s");
         ?>
     </h1>
     <h4>*Diurutkan dari tanggal yang terbaru</h4>
@@ -116,7 +143,7 @@
         $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 
         $mpdf->WriteHTML($html);
-        $mpdf->Output("cetak.pdf", "I");
+        $mpdf->Output("Data Buku Tamu Bulan $namaBulan[$bulanAngka] $tahun.pdf", "I");
     ?>
 </body>
 </html>

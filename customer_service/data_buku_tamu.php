@@ -100,11 +100,8 @@
             <div class="container-fluid">
                 <h1 class="mt-4 mb-4 text-center">Data Buku Tamu</h1>
                 <div class="mt-5 mb-4">
-                    <a href="../print.php" target="_blank">
-                        <button class="btn btn-danger mb-3 me-3"><i class='bi bi-printer me-2'></i>Download Data (.pdf)</button>
-                    </a>
-                    <a href="../excel.php">
-                        <button class="btn btn-success mb-3 me-3"><i class='bi bi-printer me-2'></i>Download Data (.xlsx)</button>
+                    <a href="print_data.php">
+                        <button class="btn btn-warning mb-3 me-3"><i class="bi bi-download me-2"></i>Download Data</button>
                     </a>
                 </div>
 
