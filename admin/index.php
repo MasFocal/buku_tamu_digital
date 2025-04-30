@@ -144,7 +144,7 @@
                     <!-- Chart Historis Tamu 30 Hari Terakhir -->
                     <div class="row mt-4">
                         <div class="col-12 mt-3 mb-1">
-                            <h4 class="text-uppercase">Line Chart Tamu 20 Hari Terakhir</h4>
+                            <h4 class="text-uppercase">Line Chart Tamu 14 Hari Terakhir</h4>
                         </div>
                     </div>
                     <div class="row">
@@ -164,7 +164,7 @@
                             $tanggal_sekarang = new DateTime();
                             $tanggal_sekarang->modify('+1 day');
                             $tanggal_sebulan_lalu = clone $tanggal_sekarang;
-                            $tanggal_sebulan_lalu->modify('-20 days');
+                            $tanggal_sebulan_lalu->modify('-14 days');
 
                             $tanggal_harian = [];
                             $data_tamu = [];
@@ -178,7 +178,7 @@
                             // Ambil data tamu dari database
                             $query = "SELECT DATE(tanggal_kedatangan) AS tanggal, COUNT(*) AS jumlah 
                                     FROM buku_tamu 
-                                    WHERE tanggal_kedatangan >= DATE_SUB(CURDATE(), INTERVAL 20 DAY) 
+                                    WHERE tanggal_kedatangan >= DATE_SUB(CURDATE(), INTERVAL 14 DAY) 
                                     GROUP BY tanggal 
                                     ORDER BY tanggal ASC";
 
